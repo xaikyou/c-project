@@ -3,10 +3,11 @@
 #include <cstdlib>
 #include <vector>
 #include <limits>
+#include <string>
 
 using namespace std;
 
-char game[3][3] = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
+char game[3][3] = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', '9'}};
 
 int randomNumber(int maxNumber)
 {
@@ -14,7 +15,7 @@ int randomNumber(int maxNumber)
     return (rand() % maxNumber);
 }
 
-int selectMode()
+char selectMode()
 {
     cout << "Please select game mode you want to play\n";
     cout << "0: ...\n";
@@ -22,17 +23,17 @@ int selectMode()
     cout << "2: Play with computer\n";
     cout << "3: Play with super AI\n";
     cout << "You choose: ";
-    int option;
+    string option;
     cin >> option;
 
-    while (!(option == 1 || option == 2 || option == 3 || option == 0))
+    while (!(option[0] == '1' || option[0] == '2' || option[0] == '3' || option[0] == '0') || option.size() != 1)
     {
         cout << "Hmm.. I don't understand. Please select agian.\n";
         cout << "You select: ";
         cin >> option;
     }
 
-    return option;
+    return option[0];
 }
 
 void modeZeroIntro()
@@ -143,19 +144,19 @@ void modeOne() /* Play with friend */
 
     displayBoard(game1);
     cout << "Select a number from 1 - 9 on the board to make your move (e.g X: 3).\n";
-    char xPlace, oPlace;
+    string xPlace, oPlace;
     while (!checkEndGame(game1))
     {
         cout << "X: ";
         cin >> xPlace;
-        while (!checkInput(game1, xPlace))
+        while (!checkInput(game1, xPlace[0]) || xPlace.size() != 1)
         {
             cout << "Hmm.. I don't understand. Please choose agian.\n";
             cout << "Select a number from 1 - 9 on the board to make your move (e.g X: 3).\n";
             cout << "X: ";
             cin >> xPlace;
         }
-        displayBoard(game1, xPlace, 'X');
+        displayBoard(game1, xPlace[0], 'X');
         
         if (checkWinner(game1) != '\0')
             break;
@@ -165,14 +166,14 @@ void modeOne() /* Play with friend */
 
         cout << "O: ";
         cin >> oPlace;
-        while (!checkInput(game1, oPlace))
+        while (!checkInput(game1, oPlace[0]) || oPlace.size() != 1)
         {
             cout << "Hmm.. I don't understand. Please choose agian.\n";
             cout << "Select a number from 1 - 9 on the board to make your move (e.g X: 3).\n";
             cout << "O: ";
             cin >> oPlace;
         }
-        displayBoard(game1, oPlace, 'O');
+        displayBoard(game1, oPlace[0], 'O');
 
         if (checkWinner(game1) != '\0')
             break;
@@ -191,15 +192,15 @@ void modeOne() /* Play with friend */
 
 }
 
-int checkGoFirst()
+char checkGoFirst()
 {
     cout << "Please select X (go first) or O.\n";
     cout << "1: X\n";
     cout << "2: O\n";
     cout << "You select: ";
-    int response;
+    string response;
     cin >> response;
-    while (response != 1 && response != 2)
+    while (response[0] != '1' && response[0] != '2' || response.size() != 1)
     {
         cout << "Hmm.. I don't understand. Please choose agian.\n";
         cout << "Please select X (go first) or O.\n";
@@ -208,7 +209,7 @@ int checkGoFirst()
         cout << "You select: ";       
         cin >> response;
     }
-    return response;
+    return response[0];
 }
 
 char computerTurn(char g[3][3]) // <-- Outstanding...
@@ -225,10 +226,11 @@ char computerTurn(char g[3][3]) // <-- Outstanding...
 
 void modeTwo() /* Play with computer */
 {
-    char game1[3][3], player, computer;
+    char game1[3][3], computer;
+    string player;
     copy(&game[0][0], &game[0][0] + 9, &game1[0][0]);
 
-    if (checkGoFirst() == 1)
+    if (checkGoFirst() == '1')
     {
         cout << "==> You've selected X. Please go first\n";
         displayBoard(game1);
@@ -239,14 +241,14 @@ void modeTwo() /* Play with computer */
             cout << "X: ";
             cin >> player;
 
-            while (!checkInput(game1, player))
+            while (!checkInput(game1, player[0]) || player.size() != 1)
             {
                 cout << "Hmm.. I don't understand. Please choose agian.\n";
                 cout << "Select a number from 1 - 9 on the board to make your move (e.g X: 3).\n";
                 cout << "X: ";
                 cin >> player;
             }
-            displayBoard(game1, player, 'X');
+            displayBoard(game1, player[0], 'X');
 
             if (checkWinner(game1) != '\0')
                 break;
@@ -291,14 +293,14 @@ void modeTwo() /* Play with computer */
             cout << "O: ";
             cin >> player;
 
-            while (!checkInput(game1, player))
+            while (!checkInput(game1, player[0]) || player.size() != 1)
             {
                 cout << "Hmm.. I don't understand. Please choose agian.\n";
                 cout << "Select a number from 1 - 9 on the board to make your move (e.g X: 3).\n";
                 cout << "O: ";
                 cin >> player;
             }
-            displayBoard(game1, player, 'O');
+            displayBoard(game1, player[0], 'O');
 
             if (checkWinner(game1) != '\0')
                 break;
@@ -431,10 +433,11 @@ char findBestMove(char g[3][3], char characterAI)
 
 void modeThree() /* Play with super AI */
 {
-    char game1[3][3], player, computer;
+    char game1[3][3], computer;
+    string player;
     copy(&game[0][0], &game[0][0] + 9, &game1[0][0]);
 
-    if (checkGoFirst() == 1)
+    if (checkGoFirst() == '1')
     {
         cout << "==> You've selected X. Please go first\n";
         displayBoard(game1);
@@ -445,14 +448,14 @@ void modeThree() /* Play with super AI */
             cout << "X: ";
             cin >> player;
 
-            while (!checkInput(game1, player))
+            while (!checkInput(game1, player[0]) || player.size() != 1)
             {
                 cout << "Hmm.. I don't understand. Please choose agian.\n";
                 cout << "Select a number from 1 - 9 on the board to make your move (e.g X: 3).\n";
                 cout << "X: ";
                 cin >> player;
             }
-            displayBoard(game1, player, 'X');
+            displayBoard(game1, player[0], 'X');
 
             if (checkWinner(game1) != '\0')
                 break;
@@ -493,14 +496,14 @@ void modeThree() /* Play with super AI */
             cout << "O: ";
             cin >> player;
 
-            while (!checkInput(game1, player))
+            while (!checkInput(game1, player[0]) || player.size() != 1)
             {
                 cout << "Hmm.. I don't understand. Please choose agian.\n";
                 cout << "Select a number from 1 - 9 on the board to make your move (e.g X: 3).\n";
                 cout << "O: ";
                 cin >> player;
             }
-            displayBoard(game1, player, 'O');
+            displayBoard(game1, player[0], 'O');
 
             if (checkWinner(game1) != '\0')
                 break;
@@ -534,23 +537,23 @@ void modeThree() /* Play with super AI */
 int main(void)
 {                    
     cout << "[[[ Tic - Tac - Toe ]]]" << endl;
-    int option = selectMode();
+    char option = selectMode();
     
     switch (option)
     {
-    case 1:
+    case '1':
         cout << "==> You've selected mode one.\n";
         modeOne();
         break;
-    case 2:
+    case '2':
         cout << "==> You've selected mode two.\n";
         modeTwo();
         break;
-    case 3:
+    case '3':
         cout << "==> You've selected mode three.\n";
         modeThree();
         break;
-    case 0:
+    case '0':
         modeZeroIntro();
         break;
     }
