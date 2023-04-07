@@ -25,6 +25,18 @@ void readFile(vector<string> &books)
     file.close();
 }
 
+int currentID(vector<string> &books)
+{
+    string ID = "";
+    for (int i = 0; i < books[books.size() - 1].size(); i++)
+        if (books[books.size() - 1][i] == ' ')
+            break;
+        else   
+            ID = ID + books[books.size() - 1][i];
+
+    return stoi(ID);
+}
+
 void addBook(vector<string> &books)
 {
     cout << endl << "--> ADD BOOK\n";
@@ -40,7 +52,7 @@ void addBook(vector<string> &books)
     if (author == "")
         author = "NA";
 
-    string book = to_string(books.size() + 1) + " - " + title + " - " + author;
+    string book = to_string(currentID(books) + 1) + " - " + title + " - " + author;
     books.push_back(book);
 
     cout << "Succesfully added" << endl << endl;
@@ -71,8 +83,8 @@ void deleteBook(vector<string> &books)
     {
         if (bookID == books[index].substr(0, bookID.size()))
         {
-            //books.erase(books.begin() + index);
-            books[index] = "NA";
+            books.erase(books.begin() + index);
+            //books[index] = "NA";
             cout << "Succesfully deleted\n";
             break;
         }
