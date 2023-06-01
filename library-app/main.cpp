@@ -150,7 +150,7 @@ void Library::displayBooksOutOnLoan()
     cout << "Books out on loan:\n";
     for (int i = 0; i < this->stock.size(); i++)
     {
-        if (this->stock[i]->getBorrower() != NULL)
+        if (this->stock[i]->getBorrower() != NULL) 
         {
             this->stock[i]->display();
         }       
