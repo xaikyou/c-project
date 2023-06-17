@@ -1,2 +1,0 @@
-#include "viewStudent.h"
-

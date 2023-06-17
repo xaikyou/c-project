@@ -1,9 +1,0 @@
-C:\Users\PC\Documents\Code\C C++\LibraryManagementSystem\LibraryManagementSystem\x64\Debug\LibraryManagementSystem.vcxproj.AssemblyReference.cache
-C:\Users\PC\Documents\Code\C C++\LibraryManagementSystem\LibraryManagementSystem\x64\Debug\LibraryManagementSystem.vcxproj.SuggestedBindingRedirects.cache
-C:\Users\PC\Documents\Code\C C++\LibraryManagementSystem\LibraryManagementSystem\x64\Debug\LibraryManagementSystem.LoginForm.resources
-C:\Users\PC\Documents\Code\C C++\LibraryManagementSystem\LibraryManagementSystem\x64\Debug\LibraryManagementSystem.vcxproj.GenerateResource.cache
-C:\Users\PC\Documents\Code\C C++\LibraryManagementSystem\LibraryManagementSystem\x64\Debug\LibraryManagementSystem.Dashboard.resources
-C:\Users\PC\Documents\Code\C C++\LibraryManagementSystem\LibraryManagementSystem\x64\Debug\LibraryManagementSystem.AddBook.resources
-C:\Users\PC\Documents\Code\C C++\LibraryManagementSystem\LibraryManagementSystem\x64\Debug\LibraryManagementSystem.ViewBooks.resources
-C:\Users\PC\Documents\Code\C C++\LibraryManagementSystem\LibraryManagementSystem\x64\Debug\LibraryManagementSystem.AddStudent.resources
-C:\Users\PC\Documents\Code\C C++\LibraryManagementSystem\LibraryManagementSystem\x64\Debug\LibraryManagementSystem.viewStudent.resources
